@@ -221,7 +221,7 @@ PrefabInstance:
     - target: {fileID: 4226446606616839320, guid: 87e2076a567f99843aad1c3779297e01,
         type: 3}
       propertyPath: m_TagString
-      value: Win
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 7688423740741085362, guid: 87e2076a567f99843aad1c3779297e01,
         type: 3}
@@ -834,13 +834,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1470279596, guid: 628f0e6af6552d44f84b6e764b8b422b, type: 3}
       propertyPath: mainThrust
-      value: 5
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1470279596, guid: 628f0e6af6552d44f84b6e764b8b422b, type: 3}
       propertyPath: rcsThrust
       value: 150
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8088950169089768094, guid: 628f0e6af6552d44f84b6e764b8b422b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 628f0e6af6552d44f84b6e764b8b422b, type: 3}
 --- !u!1001 &3003264502275050292
 PrefabInstance:

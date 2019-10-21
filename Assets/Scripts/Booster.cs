@@ -68,6 +68,9 @@ public class Booster : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+
+        if (state != State.Alive) { return; }
+
         switch (collision.gameObject.tag) 
         {
             case "Friendly":
