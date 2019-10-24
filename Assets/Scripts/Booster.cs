@@ -1,4 +1,5 @@
 ﻿
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,7 +23,7 @@ public class Booster : MonoBehaviour
     [SerializeField] ParticleSystem loadPar;
     // Start is called before the first frame update
 
-    enum State {Alive,Dying,Transcending}
+    enum State {Alive,Dying,Transcending,unkillable}
     State state = State.Alive;
     void Start()
     {
@@ -33,14 +34,42 @@ public class Booster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (state == State.Alive)
+        NoCollission();
+        if (state == State.Alive || state == State.unkillable)
         {
+            NextLevel();
             Thrust();
             Rotate();
-        }
+            
+        } 
+        
     }
 
-    
+    private void NoCollission() 
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+            {
+            if (state == State.Alive)
+            {
+                state = State.unkillable;
+            }
+            else if (state == State.unkillable)
+            {
+                state = State.Alive;
+            }
+            }
+    }
+         
+
+    private void NextLevel()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            Finish();
+        }
+        
+    }
+
     private void Thrust()
     {
         if (Input.GetKey(KeyCode.Space))
@@ -87,7 +116,7 @@ public class Booster : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-
+       
         if (state != State.Alive) { return; }
 
         switch (collision.gameObject.tag) 
@@ -106,7 +135,6 @@ public class Booster : MonoBehaviour
     private void StartSuccessSq()
     {
         state = State.Transcending;
-
         audioSource.Stop();
         audioSource.PlayOneShot(load);
         loadPar.Play();
