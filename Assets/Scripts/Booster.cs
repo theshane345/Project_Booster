@@ -25,6 +25,8 @@ public class Booster : MonoBehaviour
 
     enum State {Alive,Dying,Transcending,unkillable}
     State state = State.Alive;
+
+    
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
@@ -152,12 +154,19 @@ public class Booster : MonoBehaviour
 
     private void Death()
     {
-       SceneManager.LoadScene(0);
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentSceneIndex);
     }
 
     private void Finish()
     {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         //load next scene
-        SceneManager.LoadScene(1);
+        if (currentSceneIndex == 0)
+        {
+            int nextScene = currentSceneIndex + 1;
+            SceneManager.LoadScene(nextScene);
+        }
+        else SceneManager.LoadScene(currentSceneIndex);
     }
 }
